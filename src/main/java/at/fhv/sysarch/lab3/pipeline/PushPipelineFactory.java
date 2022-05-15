@@ -1,14 +1,29 @@
 package at.fhv.sysarch.lab3.pipeline;
 
 import at.fhv.sysarch.lab3.animation.AnimationRenderer;
+import at.fhv.sysarch.lab3.obj.Face;
 import at.fhv.sysarch.lab3.obj.Model;
+import at.fhv.sysarch.lab3.pipeline.filter.ModelSpaceToWorldSpace;
+import at.fhv.sysarch.lab3.pipeline.filter.Sink;
+import at.fhv.sysarch.lab3.pipeline.filter.Source;
 import javafx.animation.AnimationTimer;
 
 public class PushPipelineFactory {
     public static AnimationTimer createPipeline(PipelineData pd) {
+        Filter<?, Model> source = new Source();
+        Filter<Face, Face> msTws = new ModelSpaceToWorldSpace();
+        Filter<Face, ?> sink = new Sink(pd.getGraphicsContext(), pd.getRenderingMode());
+
+        Pipe<Face> source_msTws = new Pipe(source, msTws);
+
+        // source.setOutputPipe(source_msTws);
+        // MSTWS.outputPipe
+
+
         // TODO: push from the source (model)
 
         // TODO 1. perform model-view transformation from model to VIEW SPACE coordinates
+
 
         // TODO 2. perform backface culling in VIEW SPACE
 
