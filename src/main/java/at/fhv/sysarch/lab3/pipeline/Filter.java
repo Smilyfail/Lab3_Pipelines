@@ -6,15 +6,6 @@ public abstract class Filter<I, O> {
     protected I input;
     protected O output;
 
-    public Filter() {
-
-    }
-
-    public Filter(Pipe<I> inputPipe, Pipe<O> outputPipe) {
-        this.inputPipe = inputPipe;
-        this.outputPipe = outputPipe;
-    }
-
     public void setInputPipe(Pipe<I> inputPipe) {
         this.inputPipe = inputPipe;
     }
